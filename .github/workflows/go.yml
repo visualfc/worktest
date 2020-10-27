@@ -23,7 +23,14 @@ jobs:
 
     - name: Get dependencies
       run: |
+        git clone https://github.com/creationix/nvm $HOME/.nvm && cd $HOME/.nvm && git checkout v0.33.9 && echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+        nvm install 10.0.0 && nvm alias default 10.0.0
+        cd /usr/local && sudo rm -rf go && curl https://storage.googleapis.com/golang/go1.15.2.linux-amd64.tar.gz | sudo tar -xz
+        echo 'export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"' >> $BASH_ENV
         go get -v github.com/goplusjs/gopherjs
         go list github.com/goplusjs/gopherjs
         cd $HOME/go/src/github.com/goplusjs/gopherjs
+        go install -v
+        npm install # Install our (dev) dependencies from package.json.
+        cd node-syscall && ../node_modules/node-gyp/bin/node-gyp.js rebuild rebuild && mkdir -p ~/.node_libraries && cp build/Release/syscall.node ~/.node_libraries/syscall.node
         pwd
