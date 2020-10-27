@@ -24,4 +24,5 @@ jobs:
     - name: Get dependencies
       run: |
         go get -v github.com/goplusjs/gopherjs
-        gopherjs
+        cd $GOPATH/src/github.com/goplusjs/gopherjs
+        pwd
