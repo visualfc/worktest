@@ -37,5 +37,6 @@ jobs:
     - name: Test
       run: |
         cd $HOME/go/src/github.com/goplusjs/gopherjs
+        ulimit -s 10000 && gopherjs test --minify -v --short github.com/gopherjs/gopherjs/tests/... $(go list std | grep -v -x -f .std_test_pkg_exclusions)
         go test -v -race ./...
  
