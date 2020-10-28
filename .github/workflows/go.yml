@@ -35,3 +35,6 @@ jobs:
         npm install # Install our (dev) dependencies from package.json.
         cd node-syscall && ../node_modules/node-gyp/bin/node-gyp.js rebuild rebuild && mkdir -p ~/.node_libraries && cp build/Release/syscall.node ~/.node_libraries/syscall.node
         pwd
+    - name: Test
+      run: go test -v -race ./...
+ 
