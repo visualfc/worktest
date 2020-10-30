@@ -43,6 +43,6 @@ jobs:
         for d in */; do echo ./$d...; done | grep -v ./doc | grep -v ./tests | grep -v ./node | xargs go vet # All subdirectories except "doc", "tests", "node*".
         diff -u <(echo -n) <(go list ./compiler/natives/src/...) # All those packages should have // +build js.
         gopherjs install -v net/http # Should build successfully (can't run tests, since only client is supported).
-        go test -v -race ./...
-        #ulimit -s 10000 && gopherjs test --minify -v --short $(go list std | grep -v -f .std_test_pkg_exclusions)
+        #go test -v -race ./...
+        ulimit -s 10000 && gopherjs test --minify -v --short $(go list std | grep -v -f .std_test_pkg_exclusions)
   
