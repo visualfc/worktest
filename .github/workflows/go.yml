@@ -30,7 +30,7 @@ jobs:
       run: |
         go get -v github.com/goplusjs/gopherjs
         cd $HOME/go/src/github.com/goplusjs/gopherjs
-        go get -v
+        go get -v github.com/shurcooL/go/importgraphutil
         go install -v
         npm install # Install our (dev) dependencies from package.json.
         cd node-syscall && ../node_modules/node-gyp/bin/node-gyp.js rebuild rebuild && mkdir -p ~/.node_libraries && cp build/Release/syscall.node ~/.node_libraries/syscall.node
