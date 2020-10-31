@@ -21,7 +21,7 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v2 
       with:
-        path: $HOME/go/src
+        path: /Users/runner/go
   
     - name: Test and Run
       run: |
